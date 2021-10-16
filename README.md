@@ -57,21 +57,25 @@ Here the user entered username is check in database if found user is greeted wit
 
 <h2>Getting Started</h2>
 
-Theses are the instructions on how you can run the program with  pycharm .
+Theses are the instructions on how you can run the program with pycharm .
 
 <h4>Installation</h4>
 
 1. Clone the repo<br>
-``` python
+
+```python
 git clone https://github.com/softwarica-github/exam-replacement-coursework-st4000cem-AlexxyQQ
 ```
+
    <br>
-   
+
 
 2. Install SMPTLib for the OTP sending process to work<br>
-``` python
+
+```python
 pip install pygame
 ```
+
 <br>
 
 <h2>Acknowledgements</h2>
@@ -85,7 +89,3 @@ pip install pygame
 
 <h2>Appendix</h2>
 [Addition screenshots](https://imgur.com/a/VXUJkCs)
-
-<hr>
-Student ID : 11781682/210226 <br>
-Name : Aayush Pandey

@@ -19,42 +19,44 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 # Title and Icon
 pygame.display.set_caption("From Moon To Earth")
 
-icon = pygame.image.load('Images/icon.png')
+icon = pygame.image.load("Images/icon.png")
 pygame.display.set_icon(icon)
 
 # Player Images
-PlayerImg_straight = pygame.image.load('Images/PlayerStraight.png')
-PlayerImg_left_tilt = pygame.image.load('Images/PlayerLeftTilt.png')
-PlayerImg_right_tilt = pygame.image.load('Images/PlayerRightTilt.png')
+PlayerImg_straight = pygame.image.load("Images/PlayerStraight.png")
+PlayerImg_left_tilt = pygame.image.load("Images/PlayerLeftTilt.png")
+PlayerImg_right_tilt = pygame.image.load("Images/PlayerRightTilt.png")
 
 # Obstacles Images
-Obstacle_1 = pygame.image.load('Images/Asteroid1.png')
-Obstacle_2 = pygame.image.load('Images/Asteroid2.png')
+Obstacle_1 = pygame.image.load("Images/Asteroid1.png")
+Obstacle_2 = pygame.image.load("Images/Asteroid2.png")
 
 # BOSSES
-img_boss_1 = pygame.image.load('Images/Boss1.png')
-img_boss_2 = pygame.image.load('Images/Boss2.png')
-img_boss_3 = pygame.image.load('Images/Boss3.png')
-img_boss_4 = pygame.image.load('Images/Boss4.png')
-img_boss_5 = pygame.image.load('Images/Boss5.png')
-img_boss_6 = pygame.image.load('Images/Boss6.png')
-img_boss_7 = pygame.image.load('Images/Boss7.png')
+img_boss_1 = pygame.image.load("Images/Boss1.png")
+img_boss_2 = pygame.image.load("Images/Boss2.png")
+img_boss_3 = pygame.image.load("Images/Boss3.png")
+img_boss_4 = pygame.image.load("Images/Boss4.png")
+img_boss_5 = pygame.image.load("Images/Boss5.png")
+img_boss_6 = pygame.image.load("Images/Boss6.png")
+img_boss_7 = pygame.image.load("Images/Boss7.png")
 # img_boss_8 = pygame.image.load('Images/Boss8.png')
-img_boss_9 = pygame.image.load('Images/Boss9.png')
-img_boss_10 = pygame.image.load('Images/Boss10.png')
+img_boss_9 = pygame.image.load("Images/Boss9.png")
+img_boss_10 = pygame.image.load("Images/Boss10.png")
 
 # Bullet Image
-Bullet_img = pygame.image.load('Images/Bullet.png')
+Bullet_img = pygame.image.load("Images/Bullet.png")
 
 # Good Stuffs
-Health_img = pygame.image.load('Images/Health.png')
-Star_img = pygame.image.load('Images/Star.png')
-continuous_bullet = pygame.image.load('Images/continuous.png')
-Cloud_img = pygame.transform.scale(pygame.image.load('Images/dust.png'), (200, 150))
+Health_img = pygame.image.load("Images/Health.png")
+Star_img = pygame.image.load("Images/Star.png")
+continuous_bullet = pygame.image.load("Images/continuous.png")
+Cloud_img = pygame.transform.scale(pygame.image.load("Images/dust.png"), (200, 150))
 
 # Background Image
 # scaling width height of the image to th window
-BG_static = pygame.transform.scale(pygame.image.load('Images/Background_static.png'), (WIDTH, HEIGHT))
+BG_static = pygame.transform.scale(
+    pygame.image.load("Images/Background_static.png"), (WIDTH, HEIGHT)
+)
 
 # Variables
 COOLDOWN = 100
@@ -70,12 +72,12 @@ powered = False
 c_powered = False
 
 # Music
-bg_endgame = pygame.mixer.Sound('Audio/Last level sound.wav')
-bullet_shoot = pygame.mixer.Sound('Audio/Pot_shoot.wav')
-explosion_obs = pygame.mixer.Sound('Audio/Bullet_hit_obstacle.wav')
-p_up = pygame.mixer.Sound('Audio/powerUp.wav')
-health_depl = pygame.mixer.Sound('Audio/Health_deplition.wav')
-hup = pygame.mixer.Sound('Audio/hup.wav')
+bg_endgame = pygame.mixer.Sound("Audio/Last level sound.wav")
+bullet_shoot = pygame.mixer.Sound("Audio/Pot_shoot.wav")
+explosion_obs = pygame.mixer.Sound("Audio/Bullet_hit_obstacle.wav")
+p_up = pygame.mixer.Sound("Audio/powerUp.wav")
+health_depl = pygame.mixer.Sound("Audio/Health_deplition.wav")
+hup = pygame.mixer.Sound("Audio/hup.wav")
 
 
 class Bullet:
@@ -89,26 +91,26 @@ class Bullet:
     """
 
     def __init__(self, x, y, img):
-        """ X,Y Positions, image and mask of image initialization of the object """
+        """X,Y Positions, image and mask of image initialization of the object"""
         self.x = x
         self.y = y
         self.img = img
         self.mask = pygame.mask.from_surface(self.img)
 
     def draw(self, window):
-        """ Drawing the object on the screen according to the initialized coordinates and image """
+        """Drawing the object on the screen according to the initialized coordinates and image"""
         window.blit(self.img, (self.x, self.y))
 
     def move(self, vel):
-        """ Moving the drawn object on the screen in y coordinate """
+        """Moving the drawn object on the screen in y coordinate"""
         self.y += vel
 
     def off_screen(self, height):
-        """ Checking the y coordinate and height of object if its off the screen """
+        """Checking the y coordinate and height of object if its off the screen"""
         return not (self.y <= height and self.y >= -40)
 
     def collision(self, obj):
-        """ Checking collision of the object with another object provided """
+        """Checking collision of the object with another object provided"""
         return collide(self, obj)
 
 
@@ -131,34 +133,34 @@ class GoodStuff:
         """
 
         def __init__(self, x, y):
-            """ X,Y Positions, image and mask of image initialization of the object """
+            """X,Y Positions, image and mask of image initialization of the object"""
             self.x = x
             self.y = y
             self.img = Health_img
             self.mask = pygame.mask.from_surface(self.img)
 
         def draw(self, window):
-            """ Drawing the object on the screen according to the initialized coordinates and image """
+            """Drawing the object on the screen according to the initialized coordinates and image"""
             window.blit(self.img, (self.x, self.y))
 
         def move(self, vel):
-            """ Moving the drawn object on the screen in x coordinate """
+            """Moving the drawn object on the screen in x coordinate"""
             self.x += vel
 
         def get_width(self):
-            """ Returns the width of the element """
+            """Returns the width of the element"""
             return self.img.get_width()
 
         def get_height(self):
-            """ Returns the height of the element """
+            """Returns the height of the element"""
             return self.img.get_height()
 
         def off_screen(self, width):
-            """ Checking the x coordinate and width of object if its off the screen """
+            """Checking the x coordinate and width of object if its off the screen"""
             return not (self.y <= width and self.y >= 0)
 
         def collision(self, obj):
-            """ Checking collision of the object with another object provided """
+            """Checking collision of the object with another object provided"""
             return collide(self, obj)
 
     class Power_ups:
@@ -173,34 +175,34 @@ class GoodStuff:
         """
 
         def __init__(self, x, y):
-            """ X,Y Positions, image and mask of image initialization of the object """
+            """X,Y Positions, image and mask of image initialization of the object"""
             self.x = x
             self.y = y
             self.img = Star_img
             self.mask = pygame.mask.from_surface(self.img)
 
         def draw(self, window):
-            """ Drawing the object on the screen according to the initialized coordinates and image """
+            """Drawing the object on the screen according to the initialized coordinates and image"""
             window.blit(self.img, (self.x, self.y))
 
         def move(self, vel):
-            """ Moving the drawn object on the screen in x coordinate """
+            """Moving the drawn object on the screen in x coordinate"""
             self.x += vel
 
         def get_width(self):
-            """ Returns the width of the element """
+            """Returns the width of the element"""
             return self.img.get_width()
 
         def get_height(self):
-            """ Returns the height of the element """
+            """Returns the height of the element"""
             return self.img.get_height()
 
         def off_screen(self, width):
-            """ Checking the x coordinate and width of object if its off the screen """
+            """Checking the x coordinate and width of object if its off the screen"""
             return not (self.y <= width and self.y >= 0)
 
         def collision(self, obj):
-            """ Checking collision of the object with another object provided """
+            """Checking collision of the object with another object provided"""
             return collide(self, obj)
 
     class Continuous_B:
@@ -215,62 +217,62 @@ class GoodStuff:
         """
 
         def __init__(self, x, y):
-            """ X,Y Positions, image and mask of image initialization of the object """
+            """X,Y Positions, image and mask of image initialization of the object"""
             self.x = x
             self.y = y
             self.img = continuous_bullet
             self.mask = pygame.mask.from_surface(self.img)
 
         def draw(self, window):
-            """ Drawing the object on the screen according to the initialized coordinates and image """
+            """Drawing the object on the screen according to the initialized coordinates and image"""
             window.blit(self.img, (self.x, self.y))
 
         def move(self, vel):
-            """ Moving the drawn object on the screen in x coordinate """
+            """Moving the drawn object on the screen in x coordinate"""
             self.x += vel
 
         def get_width(self):
-            """ Returns the width of the element """
+            """Returns the width of the element"""
             return self.img.get_width()
 
         def get_height(self):
-            """ Returns the height of the element """
+            """Returns the height of the element"""
             return self.img.get_height()
 
         def off_screen(self, width):
-            """ Checking the x coordinate and width of object if its off the screen """
+            """Checking the x coordinate and width of object if its off the screen"""
             return not (self.y <= width and self.y >= 0)
 
         def collision(self, obj):
-            """ Checking collision of the object with another object provided """
+            """Checking collision of the object with another object provided"""
             return collide(self, obj)
 
     class clouds:
         def __init__(self, x, y):
-            """ X,Y Positions, image and mask of image initialization of the object """
+            """X,Y Positions, image and mask of image initialization of the object"""
             self.x = x
             self.y = y
             self.img = Cloud_img
             self.mask = pygame.mask.from_surface(self.img)
 
         def draw(self, window):
-            """ Drawing the object on the screen according to the initialized coordinates and image """
+            """Drawing the object on the screen according to the initialized coordinates and image"""
             window.blit(self.img, (self.x, self.y))
 
         def move(self, vel):
-            """ Moving the drawn object on the screen in x coordinate """
+            """Moving the drawn object on the screen in x coordinate"""
             self.x += vel
 
         def get_width(self):
-            """ Returns the width of the element """
+            """Returns the width of the element"""
             return self.img.get_width()
 
         def get_height(self):
-            """ Returns the height of the element """
+            """Returns the height of the element"""
             return self.img.get_height()
 
         def off_screen(self, width):
-            """ Checking the x coordinate and width of object if its off the screen """
+            """Checking the x coordinate and width of object if its off the screen"""
             return not (self.y <= width and self.y >= 0)
 
 
@@ -296,7 +298,7 @@ class Game_Asset:
     """
 
     def __init__(self, x, y, health=100):
-        """ Parameters used by the Game Asset class """
+        """Parameters used by the Game Asset class"""
         self.x = x
         self.y = y
         self.health = health
@@ -309,13 +311,13 @@ class Game_Asset:
         self.power_counting = False
 
     def draw(self, window):
-        """ draws player image on screen at provided x,y coordinates and draws the bullets in bullets list """
+        """draws player image on screen at provided x,y coordinates and draws the bullets in bullets list"""
         window.blit(self.rocket_img, (self.x, self.y))
         for bullet in self.bullets:
             bullet.draw(window)
 
     def cooldown(self):
-        """ checks for the cool down of bullet and increase it """
+        """checks for the cool down of bullet and increase it"""
         if self.cool_down_counter >= COOLDOWN:
             self.cool_down_counter = 0
         if not c_powered:
@@ -326,13 +328,13 @@ class Game_Asset:
                 self.cool_down_counter += 10
 
     def cooldown_power(self):
-        """ Decreases the power_cool_down_counter and resets after its back to 0 """
+        """Decreases the power_cool_down_counter and resets after its back to 0"""
         if self.power_counting:
-            """ When counting starts decreases the counter """
+            """When counting starts decreases the counter"""
             self.power_cool_down_counter -= 1
         if self.power_cool_down_counter == 0:
-            """ When counter is 0 resets the counter back to 500 and removes the player power up 
-            and stops the counting """
+            """When counter is 0 resets the counter back to 500 and removes the player power up
+            and stops the counting"""
             self.power_counting = False
             global powered, c_powered
             powered = False
@@ -340,22 +342,22 @@ class Game_Asset:
             self.power_cool_down_counter = 500
 
     def shoot(self):
-        """ Lets player shoot bullets once the cool down is 0 also check if the player is powered up and let player
-        fire multiple bullets. """
+        """Lets player shoot bullets once the cool down is 0 also check if the player is powered up and let player
+        fire multiple bullets."""
         if self.cool_down_counter == 0:
-            """ Checking if player can shoot """
+            """Checking if player can shoot"""
             bullet_shoot.play()
             if self.power_cool_down_counter != 0:
-                """ Checking the power counter """
+                """Checking the power counter"""
                 if powered:
-                    """ Checking if player is powered up and firing multiple bullets """
+                    """Checking if player is powered up and firing multiple bullets"""
                     bullet1 = Bullet(self.x + 30, self.y + 50, self.bullet_img)
                     bullet2 = Bullet(self.x - 30, self.y + 50, self.bullet_img)
                     self.bullets.append(bullet1)
                     self.bullets.append(bullet2)
                     self.power_counting = True
             if not powered:
-                """ Checking if player is not powered up and letting fire only a single bullet """
+                """Checking if player is not powered up and letting fire only a single bullet"""
 
                 bullet = Bullet(self.x, self.y - 30, self.bullet_img)
                 self.bullets.append(bullet)
@@ -372,11 +374,11 @@ class Game_Asset:
                 self.cool_down_counter = 1
 
     def get_width(self):
-        """ Getting width of the player """
+        """Getting width of the player"""
         return self.rocket_img.get_width()
 
     def get_height(self):
-        """ Getting height of the player """
+        """Getting height of the player"""
         return self.rocket_img.get_height()
 
 
@@ -386,7 +388,8 @@ class Player(Game_Asset):
         self.rocket_img = PlayerImg_straight
         self.bullet_img = Bullet_img
         self.mask = pygame.mask.from_surface(
-            self.rocket_img)  # creating mask for collision
+            self.rocket_img
+        )  # creating mask for collision
         self.max_health = health
 
     def move_bullet(self, vel, objs1, objs2, objs3, objs4):
@@ -456,17 +459,17 @@ class Player(Game_Asset):
 
     def healthbar(self, window):
         pygame.draw.rect(window, (255, 0, 0), (2, 585 + 115 + 10, 497, 18))
-        pygame.draw.rect(window, (0, 255, 0),
-                         (2, 585 + 115 + 10, 497 *
-                          (self.health / self.max_health), 18))
+        pygame.draw.rect(
+            window,
+            (0, 255, 0),
+            (2, 585 + 115 + 10, 497 * (self.health / self.max_health), 18),
+        )
 
 
 def obstacle_rotate(obs1, obs2):
     global Obstacle_1, Obstacle_2
-    new_Obstacle_1 = pygame.transform.rotozoom(obs1, random.randrange(0, 360),
-                                               1)
-    new_Obstacle_2 = pygame.transform.rotozoom(obs2, random.randrange(0, 360),
-                                               1)
+    new_Obstacle_1 = pygame.transform.rotozoom(obs1, random.randrange(0, 360), 1)
+    new_Obstacle_2 = pygame.transform.rotozoom(obs2, random.randrange(0, 360), 1)
     return [new_Obstacle_1, new_Obstacle_2]
 
 
@@ -496,8 +499,17 @@ class Obstacles(Game_Asset):
 
 
 class BOSSES(Game_Asset):
-    BOSS_CHOICES = [img_boss_1, img_boss_2, img_boss_3, img_boss_4, img_boss_5, img_boss_6, img_boss_7,
-                    img_boss_9, img_boss_10]
+    BOSS_CHOICES = [
+        img_boss_1,
+        img_boss_2,
+        img_boss_3,
+        img_boss_4,
+        img_boss_5,
+        img_boss_6,
+        img_boss_7,
+        img_boss_9,
+        img_boss_10,
+    ]
 
     def __init__(self, x, y, which):
         super().__init__(
@@ -522,7 +534,6 @@ class BOSSES(Game_Asset):
 
 
 class Obs_Explo(pygame.sprite.Sprite):
-
     def __init__(self, x, y, size):
         pygame.sprite.Sprite.__init__(self)
         self.images = []
@@ -561,7 +572,7 @@ def collide(obj1, obj2):
 
 
 def database():
-    db = sqlite3.connect('Database.db')
+    db = sqlite3.connect("Database.db")
     dc = db.cursor()
     try:
         dc.execute(
@@ -576,7 +587,7 @@ explosion_group = pygame.sprite.Group()
 
 
 def main():
-    """ Main loop for game """
+    """Main loop for game"""
 
     global score, COOLDOWN, level, obstacle_num, obstacle_vel, powered, c_powered, endgame, lost
 
@@ -584,8 +595,8 @@ def main():
     FPS = 60  # Designated time the while loop runes each second
 
     # Assigning font for pygame
-    main_font = pygame.font.SysFont('Arial', 25)
-    lost_font = pygame.font.SysFont('Arial', 65)
+    main_font = pygame.font.SysFont("Arial", 25)
+    lost_font = pygame.font.SysFont("Arial", 65)
 
     # initila player position
     player = Player(220, 590)
@@ -599,7 +610,7 @@ def main():
     clouds_app = []
     continuous_list = []
     background_y_pos = 0
-    Message = 'You Lost !!!'
+    Message = "You Lost !!!"
 
     lost = False  # State of game
     endgame = False
@@ -613,7 +624,7 @@ def main():
         WIN.blit(BG_static, (0, background_y_pos - HEIGHT))
 
     def drawing():
-        """ Drawing elements on screen """
+        """Drawing elements on screen"""
         global running, Image_list_Explosions_index, coords, angle, radius, endgame
 
         # Drawing background
@@ -624,9 +635,9 @@ def main():
 
         # Updating Highscore
         high_score_list = []
-        db = sqlite3.connect('Database.db')
+        db = sqlite3.connect("Database.db")
         dc = db.cursor()
-        dc.execute('SELECT * FROM Highscores')
+        dc.execute("SELECT * FROM Highscores")
         all_scores = dc.fetchall()
         for s in all_scores:
             high_score_list.append(int(s[1]))
@@ -643,17 +654,18 @@ def main():
         level_label = main_font.render(f"Level: {level}", 1, (129, 216, 208))
         WIN.blit(level_label, (WIDTH - level_label.get_width() - 10, 10))
         score_label = main_font.render(f"Score: {score}", 1, (129, 216, 208))
-        high_score_label = main_font.render(f"HighScore: {highsocre}", 1,
-                                            (129, 216, 208))
-        player_name_label = main_font.render(f"{player_name}", 1,
-                                             (129, 216, 208))
+        high_score_label = main_font.render(
+            f"HighScore: {highsocre}", 1, (129, 216, 208)
+        )
+        player_name_label = main_font.render(f"{player_name}", 1, (129, 216, 208))
 
         # Drawing lives,level and score on screen
         WIN.blit(high_score_label, (10, 10))
         WIN.blit(score_label, (10, high_score_label.get_height() + 10))
 
-        WIN.blit(player_name_label,
-                 (WIDTH / 2 - player_name_label.get_width() + 25, 10))
+        WIN.blit(
+            player_name_label, (WIDTH / 2 - player_name_label.get_width() + 25, 10)
+        )
         if not endgame:
             for obstacle in obstacles:
                 obstacle.draw(WIN)
@@ -676,7 +688,7 @@ def main():
         player.draw(WIN)
 
         if lost:
-            """ If the gave is over text is displayed """
+            """If the gave is over text is displayed"""
             lost_label = lost_font.render(f"{Message}", 1, (0, 0, 0))
             WIN.blit(lost_label, (WIDTH / 2 - lost_label.get_width() / 2, 300))
 
@@ -689,17 +701,18 @@ def main():
         pygame.display.update()
 
     def clouds_appear():
-        """ Health orbs generation """
+        """Health orbs generation"""
 
         if random.randrange(0, 6 * 60) == 1:
             if len(health_ups) < 2:
                 for i in range(1):
-                    cloud = GoodStuff.clouds(random.randrange(-200, -50),
-                                             random.randrange(100, 400))
+                    cloud = GoodStuff.clouds(
+                        random.randrange(-200, -50), random.randrange(100, 400)
+                    )
                     clouds_app.append(cloud)
 
     def health_orbs():
-        """ Health orbs generation """
+        """Health orbs generation"""
 
         # Normal situation
         if player.health < 80:
@@ -707,8 +720,8 @@ def main():
                 if len(health_ups) < 2:
                     for i in range(1):
                         health_up = GoodStuff.Health(
-                            random.randrange(-200, -50),
-                            random.randrange(100, 400))
+                            random.randrange(-200, -50), random.randrange(100, 400)
+                        )
                         health_ups.append(health_up)
 
         # Dire situation
@@ -717,8 +730,8 @@ def main():
                 if len(health_ups) < 3:
                     for i in range(1):
                         health_up = GoodStuff.Health(
-                            random.randrange(-200, -50),
-                            random.randrange(100, 400))
+                            random.randrange(-200, -50), random.randrange(100, 400)
+                        )
                         health_ups.append(health_up)
 
     def increments():
@@ -763,8 +776,8 @@ def main():
                     if len(power_ups) < 1:
                         for i in range(1):
                             power_up = GoodStuff.Power_ups(
-                                random.randrange(-200, -50),
-                                random.randrange(100, 400))
+                                random.randrange(-200, -50), random.randrange(100, 400)
+                            )
                             power_ups.append(power_up)
 
     def con_bullet():
@@ -776,13 +789,13 @@ def main():
                 if len(continuous_list) < 1:
                     for i in range(1):
                         bu = GoodStuff.Continuous_B(
-                            random.randrange(-200, -50),
-                            random.randrange(100, 400))
+                            random.randrange(-200, -50), random.randrange(100, 400)
+                        )
                         continuous_list.append(bu)
 
     """ Running the loop """
     while running:
-        """ Running while loop accord to the designated FPS """
+        """Running while loop accord to the designated FPS"""
         clock.tick(FPS)
 
         for event in pygame.event.get():
@@ -803,11 +816,12 @@ def main():
         if lost:
             lost_count += 1
             if lost_count > FPS * 3:
+                endgame = False
 
                 running = False
 
             else:
-                """ Stops player form moving """
+                """Stops player form moving"""
                 continue
 
         if endgame:
@@ -819,9 +833,11 @@ def main():
         if not endgame:
             if len(obstacles) == 0:
                 for i in range(obstacle_num):
-                    obstacle = Obstacles(random.randrange(10, WIDTH - 50),
-                                         random.randrange(-800, -100),
-                                         random.choice([0, 1]))
+                    obstacle = Obstacles(
+                        random.randrange(10, WIDTH - 50),
+                        random.randrange(-800, -100),
+                        random.choice([0, 1]),
+                    )
                     obstacles.append(obstacle)
 
         if endgame:
@@ -880,14 +896,17 @@ def main():
         if keys[pygame.K_a] and player.x - player_vel > 0:  # left
             player.x -= player_vel
             player.rocket_img = PlayerImg_left_tilt
-        if keys[pygame.K_d] and player.x + player_vel + player.get_width(
-        ) < WIDTH:  # right
+        if (
+            keys[pygame.K_d] and player.x + player_vel + player.get_width() < WIDTH
+        ):  # right
             player.x += player_vel
             player.rocket_img = PlayerImg_right_tilt
         if keys[pygame.K_w] and player.y - player_vel > 0:  # up
             player.y -= player_vel
-        if keys[pygame.K_s] and player.y + player_vel + player.get_height(
-        ) + 15 < HEIGHT:  # down
+        if (
+            keys[pygame.K_s]
+            and player.y + player_vel + player.get_height() + 15 < HEIGHT
+        ):  # down
             player.y += player_vel
         if keys[pygame.K_SPACE]:  # Space
             if not c_powered:
@@ -902,8 +921,7 @@ def main():
         if not endgame:
             for obstacle in obstacles[:]:
                 obstacle.move(obstacle_vel)
-                Obstacles.OBSTACLES_CHOICES = obstacle_rotate(
-                    Obstacle_1, Obstacle_2)
+                Obstacles.OBSTACLES_CHOICES = obstacle_rotate(Obstacle_1, Obstacle_2)
 
                 if collide(obstacle, player):
                     health_depl.play()
@@ -914,9 +932,11 @@ def main():
                     obstacles.remove(obstacle)
                     score += 1
                     for i in range(1):
-                        obstacle = Obstacles(random.randrange(10, WIDTH - 50),
-                                             random.randrange(-800, -100),
-                                             random.choice([0, 1]))
+                        obstacle = Obstacles(
+                            random.randrange(10, WIDTH - 50),
+                            random.randrange(-800, -100),
+                            random.choice([0, 1]),
+                        )
 
                         obstacles.append(obstacle)
 
@@ -933,8 +953,7 @@ def main():
                         bosses.remove(boss)
 
             if len(bosses) == 1:
-                Message = 'Game Completed'
-                endgame = False
+                Message = "Game Completed"
                 lost = True
 
         for health_up in health_ups:
