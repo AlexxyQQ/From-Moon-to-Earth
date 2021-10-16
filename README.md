@@ -61,14 +61,15 @@ Theses are the instructions on how you can run the program with pycharm .
 
 <h4>Installation</h4>
 
+For fast access just [download](https://github.com/AlexxyQQ/From-Moon-to-Earth/archive/refs/heads/master.zip) the repo and run `From Moon to Earth.exe`.
+
 1. Clone the repo<br>
 
 ```python
-git clone https://github.com/softwarica-github/exam-replacement-coursework-st4000cem-AlexxyQQ
+git clone https://github.com/AlexxyQQ/From-Moon-to-Earth.git
 ```
 
    <br>
-
 
 2. Install SMPTLib for the OTP sending process to work<br>
 
