@@ -45,16 +45,6 @@ This game was designed with a simple and appealing assets in mind whiles being f
 <img src = "https://i.ibb.co/f9vGd0j/ezgif-com-gif-maker-1.gif" >
 </a>
 
-<h2>Unit Testing</h2>
-
-Here the user entered username is check in database if found user is greeted with a message (user already exists).
-<a href="https://github.com/softwarica-github/exam-replacement-coursework-st4000cem-AlexxyQQ">
-<img  src = "https://i.imgur.com/43hGdgK.png" >
-</a>
-<a href="https://github.com/softwarica-github/exam-replacement-coursework-st4000cem-AlexxyQQ">
-<img  src = "https://i.imgur.com/BoG28xO.png" >
-</a>
-
 <h2>Getting Started</h2>
 
 Theses are the instructions on how you can run the program with pycharm .
