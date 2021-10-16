@@ -71,7 +71,7 @@ git clone https://github.com/AlexxyQQ/From-Moon-to-Earth.git
 
    <br>
 
-2. Install SMPTLib for the OTP sending process to work<br>
+2. Install pygame for game to work.<br>
 
 ```python
 pip install pygame
